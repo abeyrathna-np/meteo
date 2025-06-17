@@ -26,10 +26,21 @@ app.include_router(chat.router)
 
 
 
+# Add a root endpoint for testing
+@app.get("/")
+def root():
+    return {
+        "message": "Weather API with MCP support",
+        "mcp_endpoint": "/mcp",
+        "docs": "/docs"
+    }
+
+# Create and mount MCP AFTER all routes are included
 mcp = FastApiMCP(
     app,
     name="Weather MCP",
     description="Simple API exposing weather data (Temperature and Precipitation)",
 )
 
+# Mount MCP endpoints
 mcp.mount()
