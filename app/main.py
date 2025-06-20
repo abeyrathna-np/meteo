@@ -3,6 +3,7 @@ import os
 from typing import Any, Dict, List
 from fastmcp import FastMCP
 from fastapi import Depends, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from groq import Groq
 from dotenv import load_dotenv
 from requests import Session
@@ -19,6 +20,19 @@ load_dotenv()
 
 # Initialize Fast API server
 app = FastAPI(title="Weather API with GROQ...")
+
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",  # just in case
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Use ["*"] to allow all, not recommended in prod
+    allow_credentials=True,
+    allow_methods=["*"],  # GET, POST, etc.
+    allow_headers=["*"],
+)
 
 # Initialize MCP server
 mcp = FastMCP("weather-server")
