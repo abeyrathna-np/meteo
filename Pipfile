@@ -16,6 +16,8 @@ shapely = "*"
 fastapi-mcp = "*"
 mcp-proxy = "*"
 fastapi = {extras = ["all"], version = "*"}
+fastmcp = "*"
+groq = "*"
 
 [dev-packages]
 
