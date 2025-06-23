@@ -24,7 +24,7 @@ app = FastAPI(title="Weather API with GROQ...")
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",  # just in case
-    "https://meteo-chat.vercel.app/"
+    "https://meteo-chat.vercel.app"
 ]
 
 app.add_middleware(
